@@ -1,0 +1,41 @@
+
+Guía Explicativa del Proyecto
+Justificación de las Etiquetas Semánticas (HTML5)
+<header>: Encierra el título institucional de la actividad y la introducción general de la entrega.
+
+<nav>: Define la barra de navegación del sitio con una lista no ordenada (<ul>), garantizando la accesibilidad mediante teclado.
+
+<main>: Delimita el contenido central y exclusivo del documento sin duplicar barras globales.
+
+<section>: Agrupa lógicamente los bloques temáticos principales (Resumen, Podcast, Ejes Temáticos, Galería).
+
+<article>: Utilizado para cada una de las 3 columnas de los ejes temáticos, permitiendo que la información sea autosuficiente.
+
+<figure> y <figcaption>: Envuelven las imágenes de la galería y la incrustación del podcast, asociando semánticamente los recursos visuales con sus explicaciones contextuales.
+
+<footer>: Contiene el cierre de derechos y las especificaciones técnicas requeridas.
+
+Estrategia Matemática y CSS de Maquetación Fluida Tradicional (Sin Flexbox, Grid ni Media Queries)
+Para lograr un sitio 100% responsivo bajo restricciones técnicas estrictas, se utilizaron tres técnicas clásicas:
+
+Unidades Relativas (%) y max-width:
+
+El contenedor principal se define con width: 90% y un límite superior max-width: 1100px. Esto permite que el sitio se reduzca continuamente en pantallas móviles y se mantenga centrado en monitores ultra-anquetos.
+
+Sistema de Grid Fluido mediante float y Porcentajes Exactos:
+
+Columnas a 3 Secciones: Cada columna ocupa 31.333% del ancho disponible, con un margen horizontal de 2% (31.333% * 3 + 2% * 2 ≈ 100%).
+
+Columnas de Galería en Mitades: Ocupan 48.5% con márgenes de 3% (48.5% * 2 + 3% = 100%).
+
+Contención del Flujo (clearfix): Se implementó el patrón CSS .clearfix::after con clear: both; display: table; en los contenedores padres para evitar el colapso de altura derivado de sacar elementos del flujo normal con float: left.
+
+Navegación con display: inline-block:
+
+En lugar de emplear display: flex, los elementos de lista (<li>) se configuraron como display: inline-block;. Esto alinea los botones horizontalmente mientras se ajustan de manera fluida y fluida en pantallas estrechas sin desbordar la pantalla.
+
+Multimedia Fluida y Aspect Ratio 16:9 Adaptable:
+
+Para la imagen se aplicó la regla fundamental max-width: 100%; height: auto;, permitiendo que la escala gráfica jamás desborde la caja contenedora.
+
+Para el <iframe> de YouTube se utilizó el truco clásico del padding-bottom: 56.25% (proporción 9 / 16 = 0.5625) combinado con position: absolute a 100% de ancho y alto, logrando que el vídeo mantenga la relación de aspecto sin importar el tamaño del navegador.
